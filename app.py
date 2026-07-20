@@ -109,13 +109,24 @@ def create_checkout_session():
 def success():
     session_id = request.args.get("session_id")
     customer_email = None
+    payment_verified = False
     if session_id:
         try:
             session = stripe.checkout.Session.retrieve(session_id)
             customer_email = session.get("customer_details", {}).get("email")
+            # Gates the Meta Pixel Purchase event -- only fire it for a
+            # session Stripe confirms was actually paid, not just anyone
+            # who loads this URL, so ad conversion tracking isn't inflated.
+            payment_verified = session.get("payment_status") == "paid"
         except Exception:
             pass
-    return render_template("success.html", email=customer_email, course_url=COURSE_DELIVERY_URL)
+    return render_template(
+        "success.html",
+        email=customer_email,
+        course_url=COURSE_DELIVERY_URL,
+        payment_verified=payment_verified,
+        amount=COURSE_PRICE_CENTS / 100,
+    )
 
 
 @app.route("/api/prompt-demo/<variant>", methods=["POST"])
