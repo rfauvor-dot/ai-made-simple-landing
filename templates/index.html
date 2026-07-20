@@ -70,6 +70,35 @@
   .pain h2{font-size:30px;text-align:center;}
   .pain p{font-size:20px;max-width:640px;margin:16px auto 0;text-align:center;color:var(--text);}
 
+  /* Prompt comparator demo */
+  .demo{padding:56px 0;border-bottom:1px solid var(--line);}
+  .demo h2{font-size:30px;text-align:center;}
+  .demo .sub{font-size:18px;text-align:center;max-width:560px;margin:12px auto 28px;color:var(--navy-soft);}
+  .demo-run-btn{
+    display:block;margin:0 auto 32px;max-width:320px;width:100%;
+    background:var(--amber);color:var(--navy);font-weight:700;font-size:18px;
+    padding:14px 28px;border:none;border-radius:10px;cursor:pointer;
+    font-family:'Source Sans 3',sans-serif;
+  }
+  .demo-run-btn:hover{background:var(--amber-soft);}
+  .demo-run-btn:disabled{opacity:0.6;cursor:wait;}
+  .demo-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media (max-width:640px){.demo-columns{grid-template-columns:1fr;}}
+  .demo-col{background:#fff;border-radius:10px;padding:1rem;border:1px solid var(--line);}
+  .demo-col-bad{border-left:4px solid #C75450;}
+  .demo-col-good{border-left:4px solid #4C8C63;}
+  .demo-col-label{font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:0.05em;margin-bottom:8px;}
+  .demo-col-bad .demo-col-label{color:#C75450;}
+  .demo-col-good .demo-col-label{color:#4C8C63;}
+  .demo-prompt{font-style:italic;color:var(--navy-soft);margin-bottom:12px;font-size:15px;}
+  .demo-response{
+    font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+    font-size:14px;line-height:1.6;white-space:pre-wrap;
+    min-height:80px;max-height:300px;overflow-y:auto;color:var(--text);
+  }
+  .demo-response.done::after{content:" \2713";color:#4C8C63;font-weight:700;}
+  .demo-error{color:#C75450;text-align:center;margin-top:16px;display:none;}
+
   /* Curriculum */
   .curriculum{padding:56px 0;border-bottom:1px solid var(--line);}
   .curriculum h2{font-size:30px;text-align:center;margin-bottom:32px;}
@@ -147,6 +176,25 @@
   <p>Most people ask AI one question and take the first answer at face value. This course teaches you the handful of habits that separate a good answer from a wrong one, so you can actually trust what you're getting.</p>
 </div>
 
+<div class="demo wrap">
+  <h2>See the Difference for Yourself</h2>
+  <p class="sub">Try it below &mdash; type a vague question vs. a well-formed one and see the difference</p>
+  <button class="demo-run-btn" id="demo-run-button">Run Comparison</button>
+  <div class="demo-columns">
+    <div class="demo-col demo-col-bad">
+      <div class="demo-col-label">Vague Question</div>
+      <div class="demo-prompt">&ldquo;How do I use AI?&rdquo;</div>
+      <div class="demo-response" id="demo-response-bad"></div>
+    </div>
+    <div class="demo-col demo-col-good">
+      <div class="demo-col-label">Good Question</div>
+      <div class="demo-prompt">&ldquo;I'm 62 years old, retired, and I've never used AI before. I want to learn how to ask it questions so I can help manage my health and stay connected with my grandkids. What's the first skill I should learn, and give me a concrete example of how I'd actually ask it a question differently than I'd ask Google?&rdquo;</div>
+      <div class="demo-response" id="demo-response-good"></div>
+    </div>
+  </div>
+  <div class="demo-error" id="demo-error"></div>
+</div>
+
 <div class="curriculum wrap">
   <h2>What's Inside</h2>
   <div class="lessons">
@@ -200,6 +248,66 @@
       button.textContent = "Get Instant Access";
     }
   });
+</script>
+
+<script>
+(function () {
+  const runButton = document.getElementById("demo-run-button");
+  const responseBad = document.getElementById("demo-response-bad");
+  const responseGood = document.getElementById("demo-response-good");
+  const demoError = document.getElementById("demo-error");
+  let cachedResults = null; // {bad, good} once both complete -- avoids re-calling the API on repeat clicks
+
+  async function streamVariant(variant, targetEl) {
+    targetEl.textContent = "";
+    targetEl.classList.remove("done");
+    const resp = await fetch(`/api/prompt-demo/${variant}`, { method: "POST" });
+    if (!resp.ok || !resp.body) {
+      throw new Error("demo request failed");
+    }
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let full = "";
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      full += decoder.decode(value, { stream: true });
+      targetEl.textContent = full;
+      targetEl.scrollTop = targetEl.scrollHeight;
+    }
+    targetEl.classList.add("done");
+    return full;
+  }
+
+  runButton.addEventListener("click", async () => {
+    demoError.style.display = "none";
+
+    if (cachedResults) {
+      responseBad.textContent = cachedResults.bad;
+      responseGood.textContent = cachedResults.good;
+      responseBad.classList.add("done");
+      responseGood.classList.add("done");
+      return;
+    }
+
+    runButton.disabled = true;
+    runButton.textContent = "Running comparison...";
+
+    try {
+      const [bad, good] = await Promise.all([
+        streamVariant("bad", responseBad),
+        streamVariant("good", responseGood),
+      ]);
+      cachedResults = { bad, good };
+    } catch (err) {
+      demoError.textContent = "Sorry, something went wrong. Try again.";
+      demoError.style.display = "block";
+    } finally {
+      runButton.disabled = false;
+      runButton.textContent = "Run Comparison";
+    }
+  });
+})();
 </script>
 
 </body>
