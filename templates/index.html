@@ -92,10 +92,15 @@
   .demo-col-good .demo-col-label{color:#4C8C63;}
   .demo-prompt{font-style:italic;color:var(--navy-soft);margin-bottom:12px;font-size:15px;}
   .demo-response{
-    font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
-    font-size:14px;line-height:1.6;white-space:pre-wrap;
+    font-family:'Source Sans 3',sans-serif;
+    font-size:15px;line-height:1.6;
     min-height:80px;max-height:300px;overflow-y:auto;color:var(--text);
   }
+  .demo-response p{margin:0 0 0.7em;}
+  .demo-response p:last-child{margin-bottom:0;}
+  .demo-response h1,.demo-response h2,.demo-response h3{font-size:16px;margin:0.6em 0 0.3em;}
+  .demo-response ul,.demo-response ol{margin:0 0 0.7em;padding-left:1.3em;}
+  .demo-response code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;font-size:0.9em;background:var(--cream);padding:0.1em 0.3em;border-radius:3px;}
   .demo-response.done::after{content:" \2713";color:#4C8C63;font-weight:700;}
   .demo-error{color:#C75450;text-align:center;margin-top:16px;display:none;}
 
@@ -224,6 +229,8 @@
 </footer>
 
 <script src="https://js.stripe.com/v3/"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 <script>
   const stripe = Stripe("{{ publishable_key }}");
   const button = document.getElementById("checkout-button");
@@ -272,7 +279,7 @@
       const { done, value } = await reader.read();
       if (done) break;
       full += decoder.decode(value, { stream: true });
-      targetEl.textContent = full;
+      targetEl.innerHTML = DOMPurify.sanitize(marked.parse(full));
       targetEl.scrollTop = targetEl.scrollHeight;
     }
     targetEl.classList.add("done");
@@ -283,8 +290,8 @@
     demoError.style.display = "none";
 
     if (cachedResults) {
-      responseBad.textContent = cachedResults.bad;
-      responseGood.textContent = cachedResults.good;
+      responseBad.innerHTML = DOMPurify.sanitize(marked.parse(cachedResults.bad));
+      responseGood.innerHTML = DOMPurify.sanitize(marked.parse(cachedResults.good));
       responseBad.classList.add("done");
       responseGood.classList.add("done");
       return;
