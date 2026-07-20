@@ -50,30 +50,17 @@
     margin-bottom:20px;
   }
   .hero h1{font-size:44px;font-weight:700;max-width:680px;margin-left:auto;margin-right:auto;}
-  .hero p.sub{font-size:21px;color:var(--navy-soft);max-width:560px;margin:16px auto 0;}
+  .hero p.sub{font-size:21px;color:var(--navy-soft);max-width:620px;margin:16px auto 0;}
 
-  /* Video */
-  .video-section{padding:48px 0;text-align:center;border-bottom:1px solid var(--line);}
-  .video-frame{
-    max-width:720px;margin:0 auto;
-    aspect-ratio:16/9;
-    background:var(--navy);
-    border-radius:12px;
-    display:flex;align-items:center;justify-content:center;
-    color:var(--cream);
-    font-size:18px;
-  }
-  .video-frame iframe{width:100%;height:100%;border-radius:12px;border:none;}
-
-  /* Pain point */
-  .pain{padding:48px 0;border-bottom:1px solid var(--line);}
-  .pain h2{font-size:30px;text-align:center;}
-  .pain p{font-size:20px;max-width:640px;margin:16px auto 0;text-align:center;color:var(--text);}
+  /* Copy sections (Insight / Why This Matters / Progression) */
+  .copy-section{padding:48px 0;border-bottom:1px solid var(--line);}
+  .copy-section h2{font-size:30px;text-align:center;}
+  .copy-section p{font-size:20px;max-width:640px;margin:16px auto 0;text-align:center;color:var(--text);}
+  .copy-section p.citation{font-size:14px;max-width:640px;color:var(--navy-soft);}
 
   /* Prompt comparator demo */
   .demo{padding:56px 0;border-bottom:1px solid var(--line);}
-  .demo h2{font-size:30px;text-align:center;}
-  .demo .sub{font-size:18px;text-align:center;max-width:560px;margin:12px auto 28px;color:var(--navy-soft);}
+  .demo h2{font-size:26px;text-align:center;max-width:680px;margin:0 auto 32px;}
   .demo-run-btn{
     display:block;margin:0 auto 32px;max-width:320px;width:100%;
     background:var(--amber);color:var(--navy);font-weight:700;font-size:18px;
@@ -136,7 +123,7 @@
     border-radius:16px;
     padding:40px 32px;
   }
-  .price-card h3{color:var(--cream);font-size:26px;}
+  .price-card h3{color:var(--cream);font-size:24px;line-height:1.3;}
   .price{font-size:52px;font-weight:700;font-family:'Fraunces',serif;margin:12px 0;}
   .price span{font-size:20px;font-weight:400;opacity:0.8;}
   .cta-btn{
@@ -165,25 +152,17 @@
 
 <div class="hero wrap">
   <span class="eyebrow">For adults 40 and up</span>
-  <h1>AI Made Simple, No Tech Background Required</h1>
-  <p class="sub">Eight short lessons that show you exactly how to use AI in plain English &mdash; at your own pace, on your own schedule.</p>
+  <h1>You've Used Google Your Whole Life. AI Isn't Google.</h1>
+  <p class="sub">Most people type one question into AI and give up when the answer disappoints. The real skill is knowing how to talk to it &mdash; like a smart assistant, not a search bar. Learn that, and everything changes.</p>
 </div>
 
-<div class="video-section wrap">
-  <div class="video-frame">
-    <!-- Replace src with the actual YouTube embed URL for "The Car Wash Question" -->
-    <span>Video: The Car Wash Question</span>
-  </div>
-</div>
-
-<div class="pain wrap">
-  <h2>AI gives you answers &mdash; but not always the right ones</h2>
-  <p>Most people ask AI one question and take the first answer at face value. This course teaches you the handful of habits that separate a good answer from a wrong one, so you can actually trust what you're getting.</p>
+<div class="copy-section wrap">
+  <h2>&ldquo;AI isn't a search engine. It's a conversation.&rdquo;</h2>
+  <p>Type &ldquo;diabetes diet&rdquo; into AI and you get generic advice &mdash; the same thing Google would give you. But tell AI your age, your current diet, and what your doctor said last visit, and ask it to build you a weekly plan? That's a completely different answer. Same tool. Different question. That's the whole skill.</p>
 </div>
 
 <div class="demo wrap">
-  <h2>See the Difference for Yourself</h2>
-  <p class="sub">Try it below &mdash; type a vague question vs. a well-formed one and see the difference</p>
+  <h2>&ldquo;See it for yourself. Click below and watch the same AI give two completely different answers &mdash; one to a vague question, one to a well-formed one.&rdquo;</h2>
   <button class="demo-run-btn" id="demo-run-button">Run Comparison</button>
   <div class="demo-columns">
     <div class="demo-col demo-col-bad">
@@ -198,6 +177,17 @@
     </div>
   </div>
   <div class="demo-error" id="demo-error"></div>
+</div>
+
+<div class="copy-section wrap">
+  <h2>&ldquo;You're not behind. You just haven't been shown how.&rdquo;</h2>
+  <p>Nearly two in three older adults say AI could help them stay independent longer. And once people actually try it with a little guidance, they warm up to it fast &mdash; the hesitation isn't about ability, it's about never having someone show them the right way in.</p>
+  <p class="citation">Sourced from AARP's 2025 survey on older adults and AI.</p>
+</div>
+
+<div class="copy-section wrap">
+  <h2>&ldquo;You just did the hard part.&rdquo;</h2>
+  <p>You saw the difference between a vague question and a good one &mdash; that's the core skill. The 8-module course goes deeper: real conversations, real prompts, real independence, at your own pace, with no tech background required.</p>
 </div>
 
 <div class="curriculum wrap">
@@ -216,9 +206,9 @@
 
 <div class="pricing wrap">
   <div class="price-card">
-    <h3>AI Made Simple 40+</h3>
+    <h3>&ldquo;Go from confused to confident with AI &mdash; in a weekend, not a semester.&rdquo;</h3>
     <div class="price">$87 <span>one time</span></div>
-    <button class="cta-btn" id="checkout-button">Get Instant Access</button>
+    <button class="cta-btn" id="checkout-button">Get Started &mdash; $87 One-Time</button>
     <div class="reassure">Secure checkout &middot; No account needed &middot; Instant access after payment</div>
     <div class="error-msg" id="error-msg"></div>
   </div>
@@ -252,7 +242,7 @@
       errorMsg.textContent = "We couldn't start checkout. Please try again in a moment.";
       errorMsg.style.display = "block";
       button.disabled = false;
-      button.textContent = "Get Instant Access";
+      button.textContent = "Get Started — $87 One-Time";
     }
   });
 </script>
