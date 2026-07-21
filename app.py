@@ -66,8 +66,12 @@ def _is_rate_limited(ip):
         hits.append(now)
         return False
 
-# Where the course itself lives (Payhip product download / member link)
-COURSE_DELIVERY_URL = os.environ.get("COURSE_DELIVERY_URL", "https://aimadesimple40plus.com/access")
+# Where the course itself lives -- the ai-made-simple-portal login page.
+# A Stripe webhook (registered on this same Stripe account, pointed at that
+# portal's /stripe/webhook) creates the account and emails credentials on
+# checkout.session.completed; this link is a fallback for students who go
+# looking for it instead of checking email.
+COURSE_DELIVERY_URL = os.environ.get("COURSE_DELIVERY_URL", "https://ai-made-simple-portal.onrender.com/login")
 
 DOMAIN = os.environ.get("DOMAIN", "https://ai-made-simple-landing.onrender.com")
 
