@@ -4,3 +4,4 @@ __pycache__/
 *.log
 facebook_post_history.json
 facebook_poster_log.txt
+funnel_health_state.json
