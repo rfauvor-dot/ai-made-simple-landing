@@ -26,55 +26,49 @@
   {
     "id": 4,
     "category": "social_proof",
-    "enabled": false,
-    "note": "Claims '200+ students' and quotes specific testimonials -- site launched today (2026-07-20), not real yet. Re-enable once genuine.",
+    "enabled": true,
     "variations": [
-      "200+ students have already taken AI Made Simple 40+. Here's what they say: 'Finally, someone who explains this in English!' 'I'm already using this with my business.' 'My kids were impressed!' Your turn: https://ai-made-simple-landing.onrender.com"
+      "I built AI Made Simple 40+ because I kept watching people my age get talked out of AI before they even tried it. My promise: no tech jargon, no gimmicks -- just the handful of habits that make AI genuinely useful. See for yourself: https://ai-made-simple-landing.onrender.com"
     ]
   },
   {
     "id": 5,
     "category": "social_proof",
-    "enabled": false,
-    "note": "Quotes a specific student from 'Module 1' -- same fabrication issue as #4.",
+    "enabled": true,
     "variations": [
-      "Want proof AI is easier than you think? Check out what one student said after Module 1: 'I created an image with AI in 5 minutes. This is amazing!' You could be next. Start here: https://ai-made-simple-landing.onrender.com"
+      "You don't need to be 'good with computers' to use AI well. You need the right first question. That's the whole idea behind AI Made Simple 40+ -- see it in action with the free demo on our homepage: https://ai-made-simple-landing.onrender.com"
     ]
   },
   {
     "id": 6,
     "category": "curriculum",
-    "enabled": false,
-    "note": "Describes 'Module 2: ChatGPT for writing' -- real Module 2 on the site is 'Asking Better Questions.' Doesn't match actual curriculum.",
+    "enabled": true,
     "variations": [
-      "Module 2 is about ChatGPT for writing. Imagine: emails, cover letters, business plans—AI writes the first draft in seconds. You edit it. Done. Learn this skill: https://ai-made-simple-landing.onrender.com"
+      "Module 2 is about asking better questions. The words you choose change everything -- the difference between a vague prompt and a well-crafted one is the whole skill. See it side-by-side in our free demo: https://ai-made-simple-landing.onrender.com"
     ]
   },
   {
     "id": 7,
     "category": "curriculum",
-    "enabled": false,
-    "note": "Describes 'Module 4: AI Avatars' -- real Module 4 on the site is 'Cross-Checking.' Doesn't match actual curriculum.",
+    "enabled": true,
     "variations": [
-      "Module 4: AI Avatars. Create a digital version of yourself that can teach, sell, or greet customers 24/7. Sounds like sci-fi? It's real. And easier than you think. See how: https://ai-made-simple-landing.onrender.com"
+      "Module 4: Cross-Checking. AI sounds confident even when it's wrong. This module teaches you how to use a second tool to confirm an answer before you trust it -- a simple habit that changes everything: https://ai-made-simple-landing.onrender.com"
     ]
   },
   {
     "id": 8,
     "category": "curriculum",
-    "enabled": false,
-    "note": "Describes 'Module 6: AI for Sales & Marketing' -- real Module 6 on the site is 'Staying Safe.' Doesn't match actual curriculum.",
+    "enabled": true,
     "variations": [
-      "Module 6: AI for Sales & Marketing. Discover how to use AI to find leads, write ad copy, and close more deals. No coding. No tech background needed. Start here: https://ai-made-simple-landing.onrender.com"
+      "Module 6: Staying Safe. What should you never type into an AI chatbot? This module walks through exactly what to share and what to hold back -- peace of mind, not paranoia. Learn more: https://ai-made-simple-landing.onrender.com"
     ]
   },
   {
     "id": 9,
     "category": "curriculum",
-    "enabled": false,
-    "note": "Describes 'Module 5: Midjourney' -- real Module 5 on the site is 'Everyday Uses.' Doesn't match actual curriculum.",
+    "enabled": true,
     "variations": [
-      "Ever heard of Midjourney? It's an AI that creates images from text. Module 5 walks you through it step-by-step. By the end, you'll have generated your own professional graphics. Join: https://ai-made-simple-landing.onrender.com"
+      "Module 5: Everyday Uses. Emails, trip planning, quick research -- see the real, practical ways AI saves you time every week, no tech background required. Start here: https://ai-made-simple-landing.onrender.com"
     ]
   },
   {
@@ -96,10 +90,9 @@
   {
     "id": 12,
     "category": "announcement",
-    "enabled": false,
-    "note": "Announces a new video ('AI Avatars in Real Business') that doesn't exist -- the site has no video at all (removed tonight). Hold until a real video exists.",
+    "enabled": true,
     "variations": [
-      "Just released a new video: 'AI Avatars in Real Business.' See how one student used it to create a customer service bot. Watch here: https://ai-made-simple-landing.onrender.com"
+      "AI Made Simple 40+ is officially live! 8 lessons, real-world skills, built specifically for adults 40+ who want to use AI with confidence -- no jargon, no fluff. Enroll here: https://ai-made-simple-landing.onrender.com"
     ]
   },
   {
@@ -113,10 +106,9 @@
   {
     "id": 14,
     "category": "direct_cta",
-    "enabled": false,
-    "note": "References an 'intro video on our homepage' -- video section was removed from the site tonight. No longer accurate.",
+    "enabled": true,
     "variations": [
-      "Curious? Take 2 minutes and watch the intro video on our homepage. No email required. Then decide if it's for you. https://ai-made-simple-landing.onrender.com"
+      "Curious? Try our free interactive demo on the homepage -- watch the same AI give two totally different answers to a vague question vs. a well-crafted one. No email required. https://ai-made-simple-landing.onrender.com"
     ]
   }
 ]
