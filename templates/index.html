@@ -249,6 +249,7 @@ src="https://www.facebook.com/tr?id=1579388190637957&ev=PageView&noscript=1"
   const errorMsg = document.getElementById("error-msg");
 
   button.addEventListener("click", async () => {
+    fbq('track', 'InitiateCheckout', {value: 37, currency: 'USD'});
     button.disabled = true;
     button.textContent = "Redirecting to secure checkout...";
     errorMsg.style.display = "none";
