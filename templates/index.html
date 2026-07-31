@@ -80,6 +80,14 @@ src="https://www.facebook.com/tr?id=1579388190637957&ev=PageView&noscript=1"
   }
   .hero h1{font-size:44px;font-weight:700;max-width:680px;margin-left:auto;margin-right:auto;}
   .hero p.sub{font-size:21px;color:var(--navy-soft);max-width:620px;margin:16px auto 0;}
+  .hero .cta-btn{max-width:420px;margin-left:auto;margin-right:auto;}
+  .hero .reassure{margin-bottom:0;}
+  @media (max-width:480px){
+    .hero{padding-top:40px;padding-bottom:32px;}
+    .hero h1{font-size:32px;}
+    .hero p.sub{font-size:18px;margin-top:12px;}
+    .eyebrow{margin-bottom:14px;}
+  }
 
   /* Copy sections (Insight / Why This Matters / Progression) */
   .copy-section{padding-top:48px;padding-bottom:48px;border-bottom:1px solid var(--line);}
@@ -191,6 +199,8 @@ src="https://www.facebook.com/tr?id=1579388190637957&ev=PageView&noscript=1"
   <span class="eyebrow">For adults 40 and up</span>
   <h1>You've Used Google Your Whole Life. AI Isn't Google.</h1>
   <p class="sub">Most people type one question into AI and give up when the answer disappoints. The real skill is knowing how to talk to it &mdash; like a smart assistant, not a search bar. Learn that, and everything changes.</p>
+  <button class="cta-btn checkout-trigger" id="hero-checkout-button">Get Started &mdash; $37 One-Time</button>
+  <div class="reassure">Secure checkout &middot; No account needed &middot; Instant access after payment</div>
 </div>
 
 <div class="copy-section wrap">
@@ -253,7 +263,7 @@ src="https://www.facebook.com/tr?id=1579388190637957&ev=PageView&noscript=1"
     <div class="founding-label">Founding Member Price</div>
     <div class="price">$37 <span>one time</span></div>
     <div class="regular-price">Regular price $87, starting soon</div>
-    <button class="cta-btn" id="checkout-button">Get Started &mdash; $37 One-Time</button>
+    <button class="cta-btn checkout-trigger" id="checkout-button">Get Started &mdash; $37 One-Time</button>
     <div class="guarantee">30-Day Money-Back Guarantee &mdash; not the right fit? Email <a href="mailto:rick@aimadesimple40plus.com">rick@aimadesimple40plus.com</a> for a full refund, no questions asked.</div>
     <div class="reassure">Secure checkout &middot; No account needed &middot; Instant access after payment</div>
     <div class="error-msg" id="error-msg"></div>
@@ -269,28 +279,28 @@ src="https://www.facebook.com/tr?id=1579388190637957&ev=PageView&noscript=1"
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 <script>
   const stripe = Stripe("{{ publishable_key }}");
-  const button = document.getElementById("checkout-button");
+  const buttons = document.querySelectorAll(".checkout-trigger");
   const errorMsg = document.getElementById("error-msg");
 
-  button.addEventListener("click", async () => {
-    fbq('track', 'InitiateCheckout', {value: 37, currency: 'USD'});
-    button.disabled = true;
-    button.textContent = "Redirecting to secure checkout...";
-    errorMsg.style.display = "none";
-    try {
-      const response = await fetch("/create-checkout-session", { method: "POST" });
-      const data = await response.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error(data.error || "Something went wrong");
+  buttons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      fbq('track', 'InitiateCheckout', {value: 37, currency: 'USD'});
+      buttons.forEach((b) => { b.disabled = true; b.textContent = "Redirecting to secure checkout..."; });
+      errorMsg.style.display = "none";
+      try {
+        const response = await fetch("/create-checkout-session", { method: "POST" });
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error(data.error || "Something went wrong");
+        }
+      } catch (err) {
+        errorMsg.textContent = "We couldn't start checkout. Please try again in a moment.";
+        errorMsg.style.display = "block";
+        buttons.forEach((b) => { b.disabled = false; b.textContent = "Get Started — $37 One-Time"; });
       }
-    } catch (err) {
-      errorMsg.textContent = "We couldn't start checkout. Please try again in a moment.";
-      errorMsg.style.display = "block";
-      button.disabled = false;
-      button.textContent = "Get Started — $37 One-Time";
-    }
+    });
   });
 </script>
 
