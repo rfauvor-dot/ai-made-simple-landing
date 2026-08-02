@@ -199,7 +199,7 @@ src="https://www.facebook.com/tr?id=1579388190637957&ev=PageView&noscript=1"
   <span class="eyebrow">For adults 40 and up</span>
   <h1>You've Used Google Your Whole Life. AI Isn't Google.</h1>
   <p class="sub">Most people type one question into AI and give up when the answer disappoints. The real skill is knowing how to talk to it &mdash; like a smart assistant, not a search bar. Learn that, and everything changes.</p>
-  <button class="cta-btn checkout-trigger" id="hero-checkout-button">Get Started &mdash; $37 One-Time</button>
+  <button class="cta-btn checkout-trigger" id="hero-checkout-button">Get Started &mdash; $27 One-Time</button>
   <div class="reassure">Secure checkout &middot; No account needed &middot; Instant access after payment</div>
 </div>
 
@@ -261,9 +261,9 @@ src="https://www.facebook.com/tr?id=1579388190637957&ev=PageView&noscript=1"
   <div class="price-card">
     <h3>&ldquo;Go from confused to confident with AI &mdash; in a weekend, not a semester.&rdquo;</h3>
     <div class="founding-label">Founding Member Price</div>
-    <div class="price">$37 <span>one time</span></div>
-    <div class="regular-price">Regular price $87, starting soon</div>
-    <button class="cta-btn checkout-trigger" id="checkout-button">Get Started &mdash; $37 One-Time</button>
+    <div class="price">$27 <span>one time</span></div>
+    <div class="regular-price">Regular price $87</div>
+    <button class="cta-btn checkout-trigger" id="checkout-button">Get Started &mdash; $27 One-Time</button>
     <div class="guarantee">30-Day Money-Back Guarantee &mdash; not the right fit? Email <a href="mailto:rick@aimadesimple40plus.com">rick@aimadesimple40plus.com</a> for a full refund, no questions asked.</div>
     <div class="reassure">Secure checkout &middot; No account needed &middot; Instant access after payment</div>
     <div class="error-msg" id="error-msg"></div>
@@ -284,7 +284,7 @@ src="https://www.facebook.com/tr?id=1579388190637957&ev=PageView&noscript=1"
 
   buttons.forEach((button) => {
     button.addEventListener("click", async () => {
-      fbq('track', 'InitiateCheckout', {value: 37, currency: 'USD'});
+      fbq('track', 'InitiateCheckout', {value: 27, currency: 'USD'});
       buttons.forEach((b) => { b.disabled = true; b.textContent = "Redirecting to secure checkout..."; });
       errorMsg.style.display = "none";
       try {
@@ -298,7 +298,7 @@ src="https://www.facebook.com/tr?id=1579388190637957&ev=PageView&noscript=1"
       } catch (err) {
         errorMsg.textContent = "We couldn't start checkout. Please try again in a moment.";
         errorMsg.style.display = "block";
-        buttons.forEach((b) => { b.disabled = false; b.textContent = "Get Started — $37 One-Time"; });
+        buttons.forEach((b) => { b.disabled = false; b.textContent = "Get Started — $27 One-Time"; });
       }
     });
   });

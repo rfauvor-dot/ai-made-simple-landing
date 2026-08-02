@@ -75,7 +75,7 @@ COURSE_DELIVERY_URL = os.environ.get("COURSE_DELIVERY_URL", "https://ai-made-sim
 
 DOMAIN = os.environ.get("DOMAIN", "https://ai-made-simple-landing.onrender.com")
 
-COURSE_PRICE_CENTS = 3700  # $37.00 -- founding member launch price (was $87.00)
+COURSE_PRICE_CENTS = 2700  # $27.00 -- price drop 2026-08-01: real traffic + working checkout, still zero sales at $37; $27 keeps the "ends in 7" convention under the $87 anchor
 COURSE_NAME = "AI Made Simple 40+"
 
 
